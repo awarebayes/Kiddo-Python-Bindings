@@ -52,5 +52,4 @@ Num close 6
 ```
 
 > I am probably not smart, when it comes to benchmarking, but here goes nothing:
-
-![https://i.ibb.co/Y0HjQZr/image.png](https://i.ibb.co/Y0HjQZr/image.png)
+<img width="686" alt="image" src="https://github.com/awarebayes/Kiddo-Python-Bindings/assets/42784580/4a5fe49a-3d3a-407f-8f19-433553848073">
