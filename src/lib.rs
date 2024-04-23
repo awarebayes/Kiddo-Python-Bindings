@@ -4,11 +4,6 @@ use pyo3::{prelude::*, types::PyTuple};
 use numpy::{PyArray1, PyReadonlyArray1, PyReadonlyArray2};
 use pyo3::{pymodule, types::PyModule, PyResult, Python};
 
-#[pyclass]
-struct Py2KDTree {
-    tree: ImmutableKdTree<f32, 2>,
-}
-
 fn two_d_query<'py>(query_: PyReadonlyArray1<'py, f32>) -> [f32; 2] {
     let query = query_.as_array();
     let query_view = query.as_slice().unwrap();
@@ -33,6 +28,11 @@ fn nearest_neighbours_to_object<'py>(
     let distance = PyArray1::from_vec_bound(py, distances_vec);
     let indices = PyArray1::from_vec_bound(py, indices_vec);
     PyTuple::new_bound(py, &[indices.to_object(py), distance.to_object(py)]).to_object(py)
+}
+
+#[pyclass]
+struct Py2KDTree {
+    tree: ImmutableKdTree<f32, 2>,
 }
 
 #[pymethods]
