@@ -51,4 +51,6 @@ Within (
 Num close 6
 ```
 
+> I am probably not smart, when it comes to benchmarking, but here goes nothing:
+
 ![https://i.ibb.co/Y0HjQZr/image.png](https://i.ibb.co/Y0HjQZr/image.png)
