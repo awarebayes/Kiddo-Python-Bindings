@@ -6,13 +6,13 @@ from random import random
 import matplotlib.pyplot as plt
 
 
-sizes = [10, 50, 100, 1_000, 5_000, 10_000, 50_000, 100_000]
+sizes = [10, 50, 100, 300, 500, 750, 1_000, 5_000, 10_000, 50_000, 100_000]
 nearest_n_kiddo = []
 nearest_n_scipy = []
 time_bench = 100
-K = 512
 
 for size in sizes:
+    K = min(512, int(size * 0.1))
     points = np.random.randn(size, 2).astype(np.float32)
     tree = kpb.Py2KDTree(points)
 
@@ -31,6 +31,7 @@ for size in sizes:
 
 
 for size in sizes:
+    K = min(512, int(size * 0.1))
     points = np.random.randn(size, 2).astype(np.float32)
     tree = KDTree(points)
 
@@ -58,5 +59,5 @@ ax.grid()
 ax.legend()
 plt.xlabel("n points")
 plt.ylabel("seconds")
-plt.title("nearest within radius (k=512)")
+plt.title("nearest within radius min(k=0.1 * size, 512)")
 plt.show()
