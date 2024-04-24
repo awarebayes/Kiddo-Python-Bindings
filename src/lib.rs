@@ -21,7 +21,7 @@ fn nearest_neighbours_to_object<'py>(
     let mut indices_vec: Vec<u64> = Vec::new();
 
     for n in neighbours {
-        distances_vec.push(n.distance);
+        distances_vec.push(n.distance.sqrt());
         indices_vec.push(n.item);
     }
 
@@ -66,7 +66,7 @@ impl Py2KDTree {
         let query_view_2 = two_d_query(query_);
         let neighbours = self.tree.nearest_n_within::<SquaredEuclidean>(
             &query_view_2,
-            dist,
+            dist.powf(2.0),
             max_neighbours,
             sorted,
         );
@@ -78,7 +78,7 @@ impl Py2KDTree {
         let query_view_2 = two_d_query(query_);
         let neighbours = self
             .tree
-            .within_unsorted::<SquaredEuclidean>(&query_view_2, dist);
+            .within_unsorted::<SquaredEuclidean>(&query_view_2, dist.powf(2.0));
         neighbours.len()
     }
 
@@ -91,7 +91,7 @@ impl Py2KDTree {
         let query_view_2 = two_d_query(query_);
         let neighbours = self
             .tree
-            .within_unsorted::<SquaredEuclidean>(&query_view_2, dist);
+            .within_unsorted::<SquaredEuclidean>(&query_view_2, dist.powf(2.0));
         let neighbours_vec = Vec::from_iter(neighbours);
         nearest_neighbours_to_object(py, neighbours_vec)
     }
